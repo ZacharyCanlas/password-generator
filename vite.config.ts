@@ -14,5 +14,4 @@ export default defineConfig({
     strictPort: true,
     host: true,
   },
-  base: "/password-generator/"
 });
