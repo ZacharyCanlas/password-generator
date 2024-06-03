@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "docker-dev-up": "docker-compose -f docker-compose.yml up",
     "docker-dev-down": "docker-compose -f docker-compose.yml down",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
