@@ -1,0 +1,11 @@
+.sliderLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.sliderLabelValue {
+  color: #a4ffaf;
+}

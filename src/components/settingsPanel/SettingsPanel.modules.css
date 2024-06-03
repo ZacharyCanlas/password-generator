@@ -1,0 +1,27 @@
+.cardContainer {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.generateButton {
+  width: 100%;
+  padding: 21px 0;
+  background-color: #a4ffaf;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+  color: #24232C;
+  border: 2px solid #a4ffaf;
+}
+
+.generateButton:hover {
+  color: #A4FFAF;
+  background-color: unset;
+  border: 2px solid #A4FFAF;
+}
+
+.generateButton:hover path {
+  fill: #A4FFAF;
+}
