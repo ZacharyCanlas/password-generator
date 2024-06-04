@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
-import { FormControlLabel, FormGroup } from "@mui/material";
-import "./SettingsCheckboxes.modules.css";
-import CustomCheckbox from "../../ui/CustomCheckbox";
-import useSettingsContext from "../../../hooks/useSettingsContext";
+import { FunctionComponent } from "react"
+import { FormControlLabel, FormGroup } from "@mui/material"
+import "./SettingsCheckboxes.modules.css"
+import CustomCheckbox from "../../ui/CustomCheckbox"
+import useSettingsContext from "../../../hooks/useSettingsContext"
 
 const SettingsCheckboxes: FunctionComponent = () => {
   const {
@@ -14,7 +14,7 @@ const SettingsCheckboxes: FunctionComponent = () => {
     setIncludeNumbers,
     setIncludeSymbols,
     setIncludeUpperCase,
-  } = useSettingsContext();
+  } = useSettingsContext()
 
   return (
     <FormGroup
@@ -62,7 +62,7 @@ const SettingsCheckboxes: FunctionComponent = () => {
         data-test="SettingsCheckboxes:symbols:checkbox"
       />
     </FormGroup>
-  );
-};
+  )
+}
 
-export default SettingsCheckboxes;
+export default SettingsCheckboxes

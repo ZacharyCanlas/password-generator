@@ -1,25 +1,25 @@
-import CopyIcon from "../svg/CopyIcon";
-import { Box, Typography } from "@mui/material";
-import CardWrapper from "../ui/CardWrapper";
-import { FunctionComponent, useState } from "react";
-import clsx from "clsx";
-import "./Password.modules.css";
+import CopyIcon from "../svg/CopyIcon"
+import { Box, Typography } from "@mui/material"
+import CardWrapper from "../ui/CardWrapper"
+import { FunctionComponent, useState } from "react"
+import clsx from "clsx"
+import "./Password.modules.css"
 
 type PasswordProps = {
-  generatedPassword: string | undefined;
-};
+  generatedPassword: string | undefined
+}
 
 const Password: FunctionComponent<PasswordProps> = ({ generatedPassword }) => {
-  const placeholderPassword = "P4$5W0rD!";
-  const password = generatedPassword ?? placeholderPassword;
-  const [showCopied, setCopied] = useState<boolean>(false);
+  const placeholderPassword = "P4$5W0rD!"
+  const password = generatedPassword ?? placeholderPassword
+  const [showCopied, setCopied] = useState<boolean>(false)
   const copyPasswordToClipboard = () => {
-    navigator.clipboard.writeText(password);
-    setCopied(true);
+    navigator.clipboard.writeText(password)
+    setCopied(true)
     setTimeout(() => {
-      setCopied(false);
-    }, 1200);
-  };
+      setCopied(false)
+    }, 1200)
+  }
 
   return (
     <CardWrapper className="passwordContainer" dataTest="Password:container">
@@ -46,7 +46,7 @@ const Password: FunctionComponent<PasswordProps> = ({ generatedPassword }) => {
         <CopyIcon />
       </Box>
     </CardWrapper>
-  );
-};
+  )
+}
 
-export default Password;
+export default Password

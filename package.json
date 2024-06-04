@@ -12,6 +12,7 @@
     "docker-dev-up": "docker-compose -f docker-compose.yml up",
     "docker-dev-down": "docker-compose -f docker-compose.yml down",
     "test": "cypress open",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|json)\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },

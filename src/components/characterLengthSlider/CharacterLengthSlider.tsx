@@ -1,14 +1,14 @@
-import { Box, Slider, Typography } from "@mui/material";
-import "./CharacterLengthSlider.modules.css";
-import useSettingsContext from "../../hooks/useSettingsContext";
+import { Box, Slider, Typography } from "@mui/material"
+import "./CharacterLengthSlider.modules.css"
+import useSettingsContext from "../../hooks/useSettingsContext"
 
 const CharacterLengthSlider = () => {
   const { passwordCharacterLength, setPasswordCharacterLength } =
-    useSettingsContext();
+    useSettingsContext()
 
   const handleSliderChange = (_: Event, value: number | number[]) => {
-    setPasswordCharacterLength(value as number);
-  };
+    setPasswordCharacterLength(value as number)
+  }
 
   return (
     <>
@@ -16,7 +16,11 @@ const CharacterLengthSlider = () => {
         <Typography id="input-slider" data-test="CharacterLengthSlider:label">
           Character Length
         </Typography>
-        <Typography variant="h1" className="sliderLabelValue" data-test="CharacterLengthSlider:label:value">
+        <Typography
+          variant="h1"
+          className="sliderLabelValue"
+          data-test="CharacterLengthSlider:label:value"
+        >
           {passwordCharacterLength}
         </Typography>
       </Box>
@@ -41,7 +45,7 @@ const CharacterLengthSlider = () => {
         }}
       />
     </>
-  );
-};
+  )
+}
 
-export default CharacterLengthSlider;
+export default CharacterLengthSlider

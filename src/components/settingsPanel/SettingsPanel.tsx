@@ -1,27 +1,27 @@
-import CardWrapper from "../ui/CardWrapper";
-import "./SettingsPanel.modules.css";
-import CharacterLengthSlider from "../characterLengthSlider/CharacterLengthSlider";
-import { FunctionComponent } from "react";
-import SettingsCheckboxes from "./settingsCheckboxes/SettingsCheckboxes";
-import PasswordStrengthIndicator from "../passwordStrengthIndicator/PasswordStrengthIndicator";
-import { Button } from "@mui/base/Button";
-import { Typography } from "@mui/material";
-import ArrowRight from "../svg/ArrowRight";
-import useSettingsContext from "../../hooks/useSettingsContext";
-import clsx from "clsx";
+import CardWrapper from "../ui/CardWrapper"
+import "./SettingsPanel.modules.css"
+import CharacterLengthSlider from "../characterLengthSlider/CharacterLengthSlider"
+import { FunctionComponent } from "react"
+import SettingsCheckboxes from "./settingsCheckboxes/SettingsCheckboxes"
+import PasswordStrengthIndicator from "../passwordStrengthIndicator/PasswordStrengthIndicator"
+import { Button } from "@mui/base/Button"
+import { Typography } from "@mui/material"
+import ArrowRight from "../svg/ArrowRight"
+import useSettingsContext from "../../hooks/useSettingsContext"
+import clsx from "clsx"
 
 type SettingsPanelProps = {
-  password: string | undefined;
-  generatePassword: () => void;
-};
+  password: string | undefined
+  generatePassword: () => void
+}
 
 const SettingsPanel: FunctionComponent<SettingsPanelProps> = ({
   password,
   generatePassword,
 }) => {
-  const { enabledSettings } = useSettingsContext();
+  const { enabledSettings } = useSettingsContext()
 
-  const noEnabledSettings = enabledSettings === 0;
+  const noEnabledSettings = enabledSettings === 0
 
   return (
     <CardWrapper className="cardContainer" dataTest="SettingsPanel:container">
@@ -40,7 +40,7 @@ const SettingsPanel: FunctionComponent<SettingsPanelProps> = ({
         <ArrowRight />
       </Button>
     </CardWrapper>
-  );
-};
+  )
+}
 
-export default SettingsPanel;
+export default SettingsPanel

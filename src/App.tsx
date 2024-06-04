@@ -1,8 +1,8 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import JetBrainsMonoBold from "./assets/fonts/JetBrainsMono-VariableFont_wght.ttf";
-import PasswordGenerator from "./components/PasswordGenerator";
-import { CssBaseline } from "@mui/material";
-import SettingsContextProvider from "./provider/SettingsContextProvider";
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import JetBrainsMonoBold from "./assets/fonts/JetBrainsMono-VariableFont_wght.ttf"
+import PasswordGenerator from "./components/PasswordGenerator"
+import { CssBaseline } from "@mui/material"
+import SettingsContextProvider from "./provider/SettingsContextProvider"
 
 const App = () => {
   const theme = createTheme({
@@ -50,7 +50,7 @@ const App = () => {
         `,
       },
     },
-  });
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -59,7 +59,7 @@ const App = () => {
         <PasswordGenerator />
       </SettingsContextProvider>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App
