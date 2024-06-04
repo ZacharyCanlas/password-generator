@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import "./PasswordStrengthBars.modules.css";
 import clsx from "clsx";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 
 type PasswordStrengthBarsProps = {
   password: string | undefined;
@@ -17,7 +17,7 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
   const medium = passwordStrength === 3;
   const strong = passwordStrength === 4;
 
-  const assessPasswordStrength = () => {
+  const assessPasswordStrength = useCallback(() => {
     if (!password) {
       return;
     }
@@ -25,7 +25,7 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
     const containsNumbers = /\d/.test(password);
     const containsUpperCase = /[A-Z]/.test(password);
     const containsLowerCase = /[a-z]/.test(password);
-    const containsSymbols = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(
+    const containsSymbols = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(
       password
     );
 
@@ -37,11 +37,11 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
     ];
 
     setPasswordStrength(passwordChecks.filter(Boolean).length);
-  };
+  }, [password]);
 
   useEffect(() => {
     assessPasswordStrength();
-  }, [password]);
+  }, [password, assessPasswordStrength]);
 
   const passwordStrengthText = () => {
     if (tooWeak) return "TOO WEAK!";
@@ -52,7 +52,9 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
 
   return (
     <Box className="strengthContainer">
-      <Typography variant="h2" className="strengthText">{passwordStrengthText()}</Typography>
+      <Typography variant="h2" className="strengthText">
+        {passwordStrengthText()}
+      </Typography>
       <div className="barContainer">
         <div
           className={clsx(
