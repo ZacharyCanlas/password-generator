@@ -1,58 +1,60 @@
-import { Box, Typography } from "@mui/material";
-import "./PasswordStrengthBars.modules.css";
-import clsx from "clsx";
-import { FunctionComponent, useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material"
+import "./PasswordStrengthBars.modules.css"
+import clsx from "clsx"
+import { FunctionComponent, useCallback, useEffect, useState } from "react"
 
 type PasswordStrengthBarsProps = {
-  password: string | undefined;
-};
+  password: string | undefined
+}
 
 const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
   password,
 }) => {
-  const [passwordStrength, setPasswordStrength] = useState<number>(0);
+  const [passwordStrength, setPasswordStrength] = useState<number>(0)
 
-  const tooWeak = passwordStrength <= 1;
-  const weak = passwordStrength === 2;
-  const medium = passwordStrength === 3;
-  const strong = passwordStrength === 4;
+  const tooWeak = passwordStrength <= 1
+  const weak = passwordStrength === 2
+  const medium = passwordStrength === 3
+  const strong = passwordStrength === 4
 
-  const assessPasswordStrength = () => {
+  const assessPasswordStrength = useCallback(() => {
     if (!password) {
-      return;
+      return
     }
 
-    const containsNumbers = /\d/.test(password);
-    const containsUpperCase = /[A-Z]/.test(password);
-    const containsLowerCase = /[a-z]/.test(password);
-    const containsSymbols = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(
-      password
-    );
+    const containsNumbers = /\d/.test(password)
+    const containsUpperCase = /[A-Z]/.test(password)
+    const containsLowerCase = /[a-z]/.test(password)
+    const containsSymbols = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(
+      password,
+    )
 
     const passwordChecks = [
       containsNumbers,
       containsUpperCase,
       containsLowerCase,
       containsSymbols,
-    ];
+    ]
 
-    setPasswordStrength(passwordChecks.filter(Boolean).length);
-  };
+    setPasswordStrength(passwordChecks.filter(Boolean).length)
+  }, [password])
 
   useEffect(() => {
-    assessPasswordStrength();
-  }, [password]);
+    assessPasswordStrength()
+  }, [password, assessPasswordStrength])
 
   const passwordStrengthText = () => {
-    if (tooWeak) return "TOO WEAK!";
-    if (weak) return "WEAK";
-    if (medium) return "MEDIUM";
-    if (strong) return "STRONG";
-  };
+    if (tooWeak) return "TOO WEAK!"
+    if (weak) return "WEAK"
+    if (medium) return "MEDIUM"
+    if (strong) return "STRONG"
+  }
 
   return (
     <Box className="strengthContainer">
-      <Typography variant="h2" className="strengthText">{passwordStrengthText()}</Typography>
+      <Typography variant="h2" className="strengthText">
+        {passwordStrengthText()}
+      </Typography>
       <div className="barContainer">
         <div
           className={clsx(
@@ -60,7 +62,7 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
             { tooWeak: tooWeak },
             { weak: weak },
             { medium: medium },
-            { strong: strong }
+            { strong: strong },
           )}
         ></div>
         <div
@@ -69,7 +71,7 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
             { neutral: tooWeak },
             { weak: weak },
             { medium: medium },
-            { strong: strong }
+            { strong: strong },
           )}
         ></div>
         <div
@@ -78,7 +80,7 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
             { neutral: tooWeak },
             { neutral: weak },
             { medium: medium },
-            { strong: strong }
+            { strong: strong },
           )}
         ></div>
         <div
@@ -87,12 +89,12 @@ const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
             { neutral: tooWeak },
             { neutral: weak },
             { neutral: medium },
-            { strong: strong }
+            { strong: strong },
           )}
         ></div>
       </div>
     </Box>
-  );
-};
+  )
+}
 
-export default PasswordStrengthBars;
+export default PasswordStrengthBars

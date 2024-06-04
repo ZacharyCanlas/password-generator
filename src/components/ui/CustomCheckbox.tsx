@@ -1,24 +1,19 @@
-import { Checkbox } from "@mui/material";
-import {
-  ChangeEvent,
-  Dispatch,
-  FunctionComponent,
-  SetStateAction,
-} from "react";
+import { Checkbox } from "@mui/material"
+import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction } from "react"
 
 type CustomCheckboxProps = {
-  checked: boolean;
-  setChecked: Dispatch<SetStateAction<boolean>>;
-  dataTest?: string;
-};
+  checked: boolean
+  setChecked: Dispatch<SetStateAction<boolean>>
+  dataTest?: string
+}
 
 const CustomCheckbox: FunctionComponent<CustomCheckboxProps> = ({
   checked,
   setChecked,
 }) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
+    setChecked(event.target.checked)
+  }
 
   return (
     <Checkbox
@@ -31,7 +26,7 @@ const CustomCheckbox: FunctionComponent<CustomCheckboxProps> = ({
         },
       }}
     />
-  );
-};
+  )
+}
 
-export default CustomCheckbox;
+export default CustomCheckbox

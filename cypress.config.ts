@@ -1,9 +1,9 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from "cypress"
 
 export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:8080",
-    specPattern: './test/cypress/integration/*.spec.ts',
+    specPattern: "./test/cypress/integration/*.spec.ts",
     fixturesFolder: "test/cypress/fixtures",
     screenshotsFolder: "test/cypress/screenshots",
     videosFolder: "test/cypress/videos",
@@ -12,4 +12,4 @@ export default defineConfig({
     viewportWidth: 1920,
     viewportHeight: 1080,
   },
-});
+})

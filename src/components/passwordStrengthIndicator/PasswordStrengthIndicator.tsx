@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
-import "./PasswordStrengthIndicator.modules.css";
-import PasswordStrengthBars from "./PasswordStrengthBars";
-import { FunctionComponent } from "react";
+import { Box, Typography } from "@mui/material"
+import "./PasswordStrengthIndicator.modules.css"
+import PasswordStrengthBars from "./PasswordStrengthBars"
+import { FunctionComponent } from "react"
 
 type PasswordStrengthIndicatorProps = {
-  password: string | undefined;
-};
+  password: string | undefined
+}
 
 const PasswordStrengthIndicator: FunctionComponent<
   PasswordStrengthIndicatorProps
@@ -17,7 +17,7 @@ const PasswordStrengthIndicator: FunctionComponent<
       </Typography>
       <PasswordStrengthBars password={password} />
     </Box>
-  );
-};
+  )
+}
 
-export default PasswordStrengthIndicator;
+export default PasswordStrengthIndicator

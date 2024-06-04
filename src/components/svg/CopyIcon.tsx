@@ -1,4 +1,4 @@
-import './CopyIcon.modules.css'
+import "./CopyIcon.modules.css"
 
 const CopyIcon = () => {
   return (
@@ -8,7 +8,7 @@ const CopyIcon = () => {
         fill="#A4FFAF"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default CopyIcon;
+export default CopyIcon
