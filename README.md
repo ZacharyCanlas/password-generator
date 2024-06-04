@@ -7,7 +7,7 @@ Material UI
 Cypress
 
 ## Features
-- You can generate a password with a length of 4 until 20
+- You can generate a password with a length of 6 until 20
 - You can check any of the 4 checkboxes to generate a stronger password and this includes: uppercase letters, lowercase letters, numbers and symbols
 - Password strength checker above the generate button. This uses regex to check if the generated password has at least one uppercase letters, lowercase letters, numbers and symbols. 
   Too weak = contains 0 to 1 of the conditions
@@ -26,14 +26,18 @@ I opted not to use Math.random() since it's not cryptographically secure to be u
 
 ## Running the app locally
 To run the application through docker you can run the command:
-npm run docker-dev-up
+- npm run docker-dev-up
+- npm run dev
 
 To run the application without docker you can run:
-nvm use
-npm install
-npm run dev
+- nvm use
+- npm install
+- npm run dev
 
 ## Running the cypress tests
 1. Make sure the application is running
-2. Run this command in the terminal to open the cypress GUI: npm run cy:open
+2. Run this command in the terminal to open the cypress GUI: npm run test
 3. Choose and run the passwordGenerator.spec.ts
+
+## Deploying new changes to Github pages
+npm run deploy

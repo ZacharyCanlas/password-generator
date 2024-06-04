@@ -22,7 +22,7 @@ const CharacterLengthSlider = () => {
       </Box>
       <Slider
         step={1}
-        min={4}
+        min={6}
         max={20}
         aria-labelledby="input-slider"
         value={passwordCharacterLength}

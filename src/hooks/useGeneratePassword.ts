@@ -8,6 +8,7 @@ const useGeneratePassword = () => {
     includeSymbols,
     passwordCharacterLength,
     includeUpperCase,
+    enabledSettings,
   } = useSettingsContext();
 
   const [generatedPassword, setGeneratedPassword] = useState<
@@ -15,34 +16,27 @@ const useGeneratePassword = () => {
   >(undefined);
   const crypto = window.crypto;
 
-  const settings = [
-    includeUpperCase,
-    includeLowerCase,
-    includeNumbers,
-    includeSymbols,
-  ];
-
-  const enabledSettings = settings.filter(Boolean).length;
-
   const numbers = "1234567890";
   const specialCharacters = "!@#$%&'()*+,^-./:;<=>?[]_`{~}|";
   const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
   const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  const retrieveRandomCharacters = (
-    reference: string | string[],
-    getSingleCharacter?: boolean
-  ) => {
-    const indexes = crypto.getRandomValues(
-      new Uint32Array(
-        getSingleCharacter ? 1 : passwordCharacterLength - enabledSettings
-      )
-    );
-    let result = "";
-    indexes.forEach((index) => (result += reference[index % reference.length]));
+  const retrieveRandomCharacters = useCallback(
+    (reference: string | string[], getSingleCharacter?: boolean) => {
+      const indexes = crypto.getRandomValues(
+        new Uint32Array(
+          getSingleCharacter ? 1 : passwordCharacterLength - enabledSettings
+        )
+      );
+      let result = "";
+      indexes.forEach(
+        (index) => (result += reference[index % reference.length])
+      );
 
-    return result;
-  };
+      return result;
+    },
+    [crypto, enabledSettings, passwordCharacterLength]
+  );
 
   const generatePassword = useCallback(() => {
     const characterSet = [
@@ -55,9 +49,6 @@ const useGeneratePassword = () => {
     let password = "";
 
     if (enabledSettings === 0) {
-      const defaultOnlyLowerCasePassword = retrieveRandomCharacters(lowerCaseLetters);
-      setGeneratedPassword(defaultOnlyLowerCasePassword);
-
       return;
     }
     if (includeUpperCase) {
@@ -91,7 +82,15 @@ const useGeneratePassword = () => {
       .join("");
 
     setGeneratedPassword(shuffledPassword);
-  }, [enabledSettings, retrieveRandomCharacters]);
+  }, [
+    enabledSettings,
+    retrieveRandomCharacters,
+    includeLowerCase,
+    includeNumbers,
+    includeSymbols,
+    includeUpperCase,
+    passwordCharacterLength,
+  ]);
 
   return { password: generatedPassword, generatePassword };
 };

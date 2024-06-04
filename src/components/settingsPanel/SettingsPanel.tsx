@@ -7,6 +7,8 @@ import PasswordStrengthIndicator from "../passwordStrengthIndicator/PasswordStre
 import { Button } from "@mui/base/Button";
 import { Typography } from "@mui/material";
 import ArrowRight from "../svg/ArrowRight";
+import useSettingsContext from "../../hooks/useSettingsContext";
+import clsx from "clsx";
 
 type SettingsPanelProps = {
   password: string | undefined;
@@ -17,12 +19,21 @@ const SettingsPanel: FunctionComponent<SettingsPanelProps> = ({
   password,
   generatePassword,
 }) => {
+  const { enabledSettings } = useSettingsContext();
+
+  const noEnabledSettings = enabledSettings === 0;
+
   return (
     <CardWrapper className="cardContainer" dataTest="SettingsPanel:container">
       <CharacterLengthSlider />
       <SettingsCheckboxes />
       <PasswordStrengthIndicator password={password} />
-      <Button className="generateButton" onClick={generatePassword} data-test="SettingsPanel:generatePasswordbutton">
+      <Button
+        className={clsx("generateButton", { disabled: noEnabledSettings })} //
+        onClick={generatePassword}
+        data-test="SettingsPanel:generatePasswordbutton"
+        disabled={noEnabledSettings}
+      >
         <Typography variant="h3" sx={{ fontWeight: "700" }}>
           GENERATE
         </Typography>

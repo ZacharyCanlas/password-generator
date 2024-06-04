@@ -9,11 +9,20 @@ const SettingsContextProvider: FunctionComponent<
   SettingsContextProviderProps
 > = ({ children }) => {
   const [passwordCharacterLength, setPasswordCharacterLength] =
-    useState<number>(4);
+    useState<number>(6);
   const [includeUpperCase, setIncludeUpperCase] = useState<boolean>(false);
   const [includeLowerCase, setIncludeLowerCase] = useState<boolean>(false);
   const [includeNumbers, setIncludeNumbers] = useState<boolean>(false);
   const [includeSymbols, setIncludeSymbols] = useState<boolean>(false);
+
+  const settings = [
+    includeUpperCase,
+    includeLowerCase,
+    includeNumbers,
+    includeSymbols,
+  ];
+
+  const enabledSettings = settings.filter(Boolean).length;
 
   return (
     <SettingsContext.Provider
@@ -28,6 +37,7 @@ const SettingsContextProvider: FunctionComponent<
         setIncludeNumbers,
         includeSymbols,
         setIncludeSymbols,
+        enabledSettings,
       }}
     >
       {children}

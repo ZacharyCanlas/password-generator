@@ -11,10 +11,11 @@ type SettingsContext = {
   setIncludeNumbers: Dispatch<SetStateAction<boolean>>;
   includeSymbols: boolean;
   setIncludeSymbols: Dispatch<SetStateAction<boolean>>;
+  enabledSettings: number;
 };
 
 export const SettingsContext = createContext<SettingsContext>({
-  passwordCharacterLength: 4,
+  passwordCharacterLength: 6,
   setPasswordCharacterLength: () => false,
   includeUpperCase: false,
   setIncludeUpperCase: () => false,
@@ -24,4 +25,5 @@ export const SettingsContext = createContext<SettingsContext>({
   setIncludeNumbers: () => false,
   includeSymbols: false,
   setIncludeSymbols: () => false,
+  enabledSettings: 0,
 });

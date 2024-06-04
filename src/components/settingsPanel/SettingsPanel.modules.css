@@ -12,16 +12,30 @@
   justify-content: center;
   gap: 24px;
   align-items: center;
-  color: #24232C;
+  color: #24232c;
   border: 2px solid #a4ffaf;
 }
 
 .generateButton:hover {
-  color: #A4FFAF;
+  color: #a4ffaf;
   background-color: unset;
-  border: 2px solid #A4FFAF;
+  border: 2px solid #a4ffaf;
 }
 
 .generateButton:hover path {
-  fill: #A4FFAF;
+  fill: #a4ffaf;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.disabled:hover {
+  color: #24232c;
+  background-color: #a4ffaf
+}
+
+.disabled:hover path {
+  fill: #24232C;
 }
