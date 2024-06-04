@@ -39,5 +39,8 @@ To run the application without docker you can run:
 2. Run this command in the terminal to open the cypress GUI: npm run test
 3. Choose and run the passwordGenerator.spec.ts
 
+## Formatting the project using prettier
+- npm run format
+
 ## Deploying new changes to Github pages
 npm run deploy
