@@ -1,7 +1,7 @@
 services:
   app:
-    container_name: app-dev-c
-    image: app-dev-i
+    container_name: password-generator
+    image: password-generator-image
     build:
       context: .
       dockerfile: Dockerfile
