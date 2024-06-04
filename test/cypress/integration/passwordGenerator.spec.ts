@@ -46,7 +46,7 @@ describe("Password Generator App", () => {
     );
     cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
       "have.text",
-      "4"
+      "6"
     );
 
     cy.get('[data-test="SettingsCheckboxes:container"]').within(() => {
@@ -69,21 +69,16 @@ describe("Password Generator App", () => {
     });
   });
 
-  it("Password box should have a four characters long password with only lower case letters upon clicking the generate button with no checkbox checked", () => {
-    cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
-      "have.text",
-      "4"
+  it("Generate button should be disabled when there is no checkbox checked", () => {
+    cy.get('[data-test="SettingsPanel:generatePasswordbutton"]').should(
+      "be.disabled"
     );
-    cy.get('[data-test="SettingsPanel:generatePasswordbutton"]').click();
-    cy.get('[data-test="Password:generatedPasswordText"]')
-      .invoke("text")
-      .should("match", /[a-z]/);
   });
 
-  it("Should generate a four characters long password with only upper case letters upon clicking the generate button with the include uppercase checkbox checked", () => {
+  it("Should generate a six characters long password with only upper case letters upon clicking the generate button with the include uppercase checkbox checked", () => {
     cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
       "have.text",
-      "4"
+      "6"
     );
 
     clickCheckbox(true, false, false, false);
@@ -93,11 +88,11 @@ describe("Password Generator App", () => {
       .should("match", /[A-Z]/);
   });
 
-  it("Should generate a twelve characters long password with only lower case letters upon clicking the generate button with the include lowercase checkbox checked", () => {
+  it("Should generate a thirteen characters long password with only lower case letters upon clicking the generate button with the include lowercase checkbox checked", () => {
     cy.get('[data-test="CharacterLengthSlider:slider"]').type("{rightArrow}");
     cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
       "have.text",
-      "12"
+      "13"
     );
 
     clickCheckbox(false, true, false, false);
@@ -108,11 +103,11 @@ describe("Password Generator App", () => {
       .should("match", /[a-z]/);
   });
 
-  it("Should generate a twelve characters long password with only numbers upon clicking the generate button with the include numbers checkbox checked", () => {
+  it("Should generate a thirteen characters long password with only numbers upon clicking the generate button with the include numbers checkbox checked", () => {
     cy.get('[data-test="CharacterLengthSlider:slider"]').type("{rightArrow}");
     cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
       "have.text",
-      "12"
+      "13"
     );
 
     clickCheckbox(false, false, true, false);
@@ -123,11 +118,11 @@ describe("Password Generator App", () => {
       .should("match", /\d/);
   });
 
-  it("Should generate a twelve characters long password with only symbols upon clicking the generate button with the include symbols checkbox checked", () => {
+  it("Should generate a thirteen characters long password with only symbols upon clicking the generate button with the include symbols checkbox checked", () => {
     cy.get('[data-test="CharacterLengthSlider:slider"]').type("{rightArrow}");
     cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
       "have.text",
-      "12"
+      "13"
     );
 
     clickCheckbox(false, false, false, true);
@@ -135,14 +130,14 @@ describe("Password Generator App", () => {
     cy.get('[data-test="SettingsPanel:generatePasswordbutton"]').click();
     cy.get('[data-test="Password:generatedPasswordText"]')
       .invoke("text")
-      .should("match", /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/);
+      .should("match", /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/);
   });
 
-  it("Should generate a twelve characters long password with at least one uppercase letter, lowercase letter, number and symbol with all the checkboxes checked", () => {
+  it("Should generate a thirteen characters long password with at least one uppercase letter, lowercase letter, number and symbol with all the checkboxes checked", () => {
     cy.get('[data-test="CharacterLengthSlider:slider"]').type("{rightArrow}");
     cy.get('[data-test="CharacterLengthSlider:label:value"]').should(
       "have.text",
-      "12"
+      "13"
     );
 
     clickCheckbox(true, true, true, true);
@@ -152,7 +147,7 @@ describe("Password Generator App", () => {
       .invoke("text")
       .should(
         "match",
-        /\S*(\S*([A-Z]\S*[0-9])|([0-9]\S*[a-zA-Z])([ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]))\S*/
+        /\S*(\S*([A-Z]\S*[0-9])|([0-9]\S*[a-zA-Z])([ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]))\S*/
       );
   });
 });
