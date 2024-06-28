@@ -14,6 +14,7 @@ const useGeneratePassword = () => {
   const [generatedPassword, setGeneratedPassword] = useState<
     string | undefined
   >(undefined)
+  const [passwordStrength, setPasswordStrength] = useState<number>(0)
   const crypto = window.crypto
 
   const numbers = "1234567890"
@@ -35,6 +36,28 @@ const useGeneratePassword = () => {
     },
     [crypto, enabledSettings, passwordCharacterLength],
   )
+
+  const assessPasswordStrength = useCallback((password: string) => {
+    if (!password) {
+      return
+    }
+
+    const containsNumbers = /\d/.test(password)
+    const containsUpperCase = /[A-Z]/.test(password)
+    const containsLowerCase = /[a-z]/.test(password)
+    const containsSymbols = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(
+      password,
+    )
+
+    const passwordChecks = [
+      containsNumbers,
+      containsUpperCase,
+      containsLowerCase,
+      containsSymbols,
+    ]
+
+    setPasswordStrength(passwordChecks.filter(Boolean).length)
+  }, [])
 
   const generatePassword = useCallback(() => {
     const characterSet = [
@@ -80,6 +103,7 @@ const useGeneratePassword = () => {
       .join("")
 
     setGeneratedPassword(shuffledPassword)
+    assessPasswordStrength(shuffledPassword)
   }, [
     enabledSettings,
     retrieveRandomCharacters,
@@ -88,9 +112,14 @@ const useGeneratePassword = () => {
     includeSymbols,
     includeUpperCase,
     passwordCharacterLength,
+    assessPasswordStrength,
   ])
 
-  return { password: generatedPassword, generatePassword }
+  return {
+    password: generatedPassword,
+    generatePassword,
+    passwordStrength,
+  }
 }
 
 export default useGeneratePassword

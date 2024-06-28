@@ -4,18 +4,18 @@ import PasswordStrengthBars from "./PasswordStrengthBars"
 import { FunctionComponent } from "react"
 
 type PasswordStrengthIndicatorProps = {
-  password: string | undefined
+  passwordStrength: number
 }
 
 const PasswordStrengthIndicator: FunctionComponent<
   PasswordStrengthIndicatorProps
-> = ({ password }) => {
+> = ({ passwordStrength }) => {
   return (
     <Box className="box">
       <Typography variant="h3" className="text">
         STRENGTH
       </Typography>
-      <PasswordStrengthBars password={password} />
+      <PasswordStrengthBars passwordStrength={passwordStrength} />
     </Box>
   )
 }

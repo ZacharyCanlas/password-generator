@@ -1,47 +1,19 @@
 import { Box, Typography } from "@mui/material"
 import "./PasswordStrengthBars.modules.css"
 import clsx from "clsx"
-import { FunctionComponent, useCallback, useEffect, useState } from "react"
+import { FunctionComponent } from "react"
 
 type PasswordStrengthBarsProps = {
-  password: string | undefined
+  passwordStrength: number
 }
 
 const PasswordStrengthBars: FunctionComponent<PasswordStrengthBarsProps> = ({
-  password,
+  passwordStrength,
 }) => {
-  const [passwordStrength, setPasswordStrength] = useState<number>(0)
-
   const tooWeak = passwordStrength <= 1
   const weak = passwordStrength === 2
   const medium = passwordStrength === 3
   const strong = passwordStrength === 4
-
-  const assessPasswordStrength = useCallback(() => {
-    if (!password) {
-      return
-    }
-
-    const containsNumbers = /\d/.test(password)
-    const containsUpperCase = /[A-Z]/.test(password)
-    const containsLowerCase = /[a-z]/.test(password)
-    const containsSymbols = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(
-      password,
-    )
-
-    const passwordChecks = [
-      containsNumbers,
-      containsUpperCase,
-      containsLowerCase,
-      containsSymbols,
-    ]
-
-    setPasswordStrength(passwordChecks.filter(Boolean).length)
-  }, [password])
-
-  useEffect(() => {
-    assessPasswordStrength()
-  }, [password, assessPasswordStrength])
 
   const passwordStrengthText = () => {
     if (tooWeak) return "TOO WEAK!"
