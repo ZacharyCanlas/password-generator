@@ -18,7 +18,10 @@ const PasswordGenerator = () => {
         Password Generator
       </Typography>
       <Password generatedPassword={password} />
-      <SettingsPanel generatePassword={generatePassword} passwordStrength={passwordStrength} />
+      <SettingsPanel
+        generatePassword={generatePassword}
+        passwordStrength={passwordStrength}
+      />
     </Container>
   )
 }

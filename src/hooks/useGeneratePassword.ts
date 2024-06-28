@@ -37,6 +37,28 @@ const useGeneratePassword = () => {
     [crypto, enabledSettings, passwordCharacterLength],
   )
 
+  const assessPasswordStrength = useCallback((password: string) => {
+    if (!password) {
+      return
+    }
+
+    const containsNumbers = /\d/.test(password)
+    const containsUpperCase = /[A-Z]/.test(password)
+    const containsLowerCase = /[a-z]/.test(password)
+    const containsSymbols = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(
+      password,
+    )
+
+    const passwordChecks = [
+      containsNumbers,
+      containsUpperCase,
+      containsLowerCase,
+      containsSymbols,
+    ]
+
+    setPasswordStrength(passwordChecks.filter(Boolean).length)
+  }, [])
+
   const generatePassword = useCallback(() => {
     const characterSet = [
       ...(includeUpperCase ? upperCaseLetters : []),
@@ -90,30 +112,8 @@ const useGeneratePassword = () => {
     includeSymbols,
     includeUpperCase,
     passwordCharacterLength,
+    assessPasswordStrength,
   ])
-
-  const assessPasswordStrength = useCallback((password: string
-  ) => {
-    if (!password) {
-      return
-    }
-
-    const containsNumbers = /\d/.test(password)
-    const containsUpperCase = /[A-Z]/.test(password)
-    const containsLowerCase = /[a-z]/.test(password)
-    const containsSymbols = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(
-      password,
-    )
-
-    const passwordChecks = [
-      containsNumbers,
-      containsUpperCase,
-      containsLowerCase,
-      containsSymbols,
-    ]
-
-    setPasswordStrength(passwordChecks.filter(Boolean).length)
-  }, [])
 
   return {
     password: generatedPassword,
