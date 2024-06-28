@@ -11,13 +11,13 @@ import useSettingsContext from "../../hooks/useSettingsContext"
 import clsx from "clsx"
 
 type SettingsPanelProps = {
-  password: string | undefined
   generatePassword: () => void
+  passwordStrength: number
 }
 
 const SettingsPanel: FunctionComponent<SettingsPanelProps> = ({
-  password,
   generatePassword,
+  passwordStrength,
 }) => {
   const { enabledSettings } = useSettingsContext()
 
@@ -27,7 +27,7 @@ const SettingsPanel: FunctionComponent<SettingsPanelProps> = ({
     <CardWrapper className="cardContainer" dataTest="SettingsPanel:container">
       <CharacterLengthSlider />
       <SettingsCheckboxes />
-      <PasswordStrengthIndicator password={password} />
+      <PasswordStrengthIndicator passwordStrength={passwordStrength} />
       <Button
         className={clsx("generateButton", { disabled: noEnabledSettings })} //
         onClick={generatePassword}

@@ -5,7 +5,7 @@ import SettingsPanel from "./settingsPanel/SettingsPanel"
 import useGeneratePassword from "../hooks/useGeneratePassword"
 
 const PasswordGenerator = () => {
-  const { password, generatePassword } = useGeneratePassword()
+  const { password, generatePassword, passwordStrength } = useGeneratePassword()
 
   return (
     <Container maxWidth={false} disableGutters sx={{ display: "flex" }}>
@@ -18,7 +18,7 @@ const PasswordGenerator = () => {
         Password Generator
       </Typography>
       <Password generatedPassword={password} />
-      <SettingsPanel password={password} generatePassword={generatePassword} />
+      <SettingsPanel generatePassword={generatePassword} passwordStrength={passwordStrength} />
     </Container>
   )
 }
